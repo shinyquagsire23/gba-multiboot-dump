@@ -176,12 +176,10 @@ int main ( void )
 	    fclose (test);
 	}
 	
-	iprintf ("Waiting forever...\n");
-	for (;;)
-	{
-	    xfer16_end();
-		VBlankIntrWait();
-	}
+	memcpy(0x02000000, store, addr-2);
+	
+	void (*mbjump)(void) = 0x02000000;
+    mbjump();
 }
 
 
